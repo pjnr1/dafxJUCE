@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist>
+  <dict>
+    <key>CFBundleExecutable</key>
+    <string>@PROJECT_NAME@</string>
+    <key>CFBundleIconFile</key>
+    <string/>
+    <key>CFBundleIdentifier</key>
+    <string>com.@COMPANY_ID@.@PROJECT_NAME@</string>
+    <key>CFBundleName</key>
+    <string>@PROJECT_NAME@</string>
+    <key>CFBundleDisplayName</key>
+    <string>@PROJECT_NAME@</string>
+    <key>CFBundlePackageType</key>
+    <string>BNDL</string>
+    <key>CFBundleSignature</key>
+    <string>????</string>
+    <key>CFBundleShortVersionString</key>
+    <string>@PLUGIN_MAJOR_VERSION@.@PLUGIN_MINOR_VERSION@.@PLUGIN_PATCH_VERSION@</string>
+    <key>CFBundleVersion</key>
+    <string>@PLUGIN_MAJOR_VERSION@.@PLUGIN_MINOR_VERSION@.@PLUGIN_PATCH_VERSION@</string>
+    <key>NSHumanReadableCopyright</key>
+    <string/>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>AudioComponents</key>
+    <array>
+      <dict>
+        <key>name</key>
+        <string>@COMPANY_ID@: @PROJECT_NAME@</string>
+        <key>description</key>
+        <string>@PROJECT_NAME@</string>
+        <key>factoryFunction</key>
+        <string>@PROJECT_NAME@AUFactory</string>
+        <key>manufacturer</key>
+        <string>Manu</string>
+        <key>type</key>
+        <string>aufx</string>
+        <key>subtype</key>
+        <string>D8za</string>
+        <key>version</key>
+        <integer>@PLUGIN_DEC_VERSION@</integer>
+        <key>resourceUsage</key>
+        <dict>
+          <key>network.client</key>
+          <true/>
+          <key>temporary-exception.files.all.read-write</key>
+          <true/>
+        </dict>
+      </dict>
+    </array>
+  </dict>
+</plist>
