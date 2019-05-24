@@ -1,3 +1,5 @@
+cmake_minimum_required (VERSION 3.4.1)
+
 set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 find_package(JUCEcmakehelpers)
 
@@ -6,20 +8,24 @@ find_package(JUCEcmakehelpers)
 # Set your company-id and the name of the project here:
 set(PROJECT_NAME dafxJUCE)
 set(COMPANY_ID pjnr1)
-message("Reloading:\tcom.${COMPANY_ID}.${PROJECT_NAME}")
+message("-- CMAKE --")
+message("Loading:\tcom.${COMPANY_ID}.${PROJECT_NAME}")
 
-cmake_minimum_required (VERSION 3.4.1)
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE "Debug"  CACHE STRING "Choose the type of build." FORCE)
+endif (NOT CMAKE_BUILD_TYPE)
 
-message("Build path ${CMAKE_CURRENT_BINARY_DIR}")
+set(AAX_SDK_PATH "$ENV{HOME}/SDKs/AAX" CACHE STRING "Choose the AAX SDK path." FORCE)
+set(RTAS_SDK_PATH "$ENV{HOME}/SDKs/PT_90_SDK" CACHE STRING "Choose the AAX SDK path." FORCE)
+
 
 SetAppVersion(0 1 0)
-
 ConfigureJUCEAppHeaders()
 
 SET(BUILD_AU 1)
 SET(BUILD_VST3 1)
-SET(BUILD_AAX 0)
-SET(BUILD_RTAS 0)
+SET(BUILD_AAX 1)
+SET(BUILD_RTAS 1)
 SET(BUILD_STANDALONE 1)
 
 if(BUILD_AU)
@@ -29,19 +35,26 @@ if(BUILD_VST3)
     ConfigureJUCEplists(VST3)
 endif()
 if(BUILD_RTAS)
-    ConfigureJUCEplists(RTAS)
+    if (EXISTS ${RTAS_SDK_PATH} AND EXISTS ${AAX_SDK_PATH})
+        ConfigureJUCEplists(RTAS)
+    else()
+        message(WARNING "Can't build RTAS, SDK-folder not found (${RTAS_SDK_PATH} or ${AAX_SDK_PATH}).")
+        set(BUILD_RTAS 0)
+    endif()
 endif()
 if(BUILD_AAX)
-    ConfigureJUCEplists(AAX)
+    if (EXISTS ${AAX_SDK_PATH})
+        ConfigureJUCEplists(AAX)
+    else()
+        message(WARNING "Can't build AAX, SDK-folder not found (${AAX_SDK_PATH}).")
+        set(BUILD_AAX 0)
+    endif()
 endif()
 if(BUILD_STANDALONE)
     ConfigureJUCEplists(Standalone_Plugin)
 endif()
 
 
-if (NOT CMAKE_BUILD_TYPE)
-    set (CMAKE_BUILD_TYPE "Debug"  CACHE STRING "Choose the type of build." FORCE)
-endif (NOT CMAKE_BUILD_TYPE)
 
 set(JUCE_MODULES_PATH "/Applications/JUCE/modules")
 
