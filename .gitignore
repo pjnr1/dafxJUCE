@@ -152,3 +152,6 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 
+# Custom - just ignore the whole IDE folder..
+.idea/*
+
