@@ -486,6 +486,6 @@
 #if defined(JucePlugin_Name) && defined(JucePlugin_Build_Standalone)
 #define  JUCE_STANDALONE_APPLICATION JucePlugin_Build_Standalone
 #else
-#define  JUCE_STANDALONE_APPLICATION 1
+#define  JUCE_STANDALONE_APPLICATION 0
 #endif
 #endif
