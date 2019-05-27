@@ -9,11 +9,15 @@ MainEditor::MainEditor(MainProcessor &p)
     // Initialize header / control view
     addAndMakeVisible(contentSelector);
     contentSelector.getReferenceToBypass()->addListener(this);
+    contentSelector.getReferenceToSelectorBox()->addListener(this);
 
     // Initialize content view
-    components.push_back(new GainEditor());
+    editors.insert(0, new EmptyEditor());
+    editors.insert(1, new GainEditor());
+    editors.insert(2, new IIR_component());
 
-    content = components.front();
+    content = editors.getUnchecked(0);
+    // content = components.front();
 
     addAndMakeVisible(content);
 
@@ -22,7 +26,6 @@ MainEditor::MainEditor(MainProcessor &p)
 
 MainEditor::~MainEditor()
 {
-    delete content;
 }
 
 //==============================================================================
@@ -48,12 +51,10 @@ void MainEditor::resized()
 }
 void MainEditor::timerCallback()
 {
-
 }
 void MainEditor::buttonClicked(Button *button)
 {
-    Listener::buttonStateChanged(button);
-    if (contentSelector.getReferenceToBypass()->getToggleState())
+    if(button->getToggleState())
     {
         processor.enableBypass();
     }
@@ -61,4 +62,15 @@ void MainEditor::buttonClicked(Button *button)
     {
         processor.disableBypass();
     }
+}
+void MainEditor::comboBoxChanged(ComboBox *comboBoxThatHasChanged)
+{
+    auto idx = comboBoxThatHasChanged->getSelectedItemIndex();
+
+    removeChildComponent(content);
+    content = editors.getUnchecked(idx);
+    addAndMakeVisible(content);
+
+    // Call to correct placement
+    this->resized();
 }

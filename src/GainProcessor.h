@@ -1,16 +1,25 @@
-//
-// Created by Jens Lindahl on 2019-05-26.
-//
-
 #ifndef DAFXJUCE_GAIN_PROCESSOR_H
 #define DAFXJUCE_GAIN_PROCESSOR_H
 
+#include "../JuceLibraryCode/JuceHeader.h"
+#include "ProcessorBase.h"
 
+class GainProcessor : public ProcessorBase
+{
+public:
+    GainProcessor();
+    ~GainProcessor();
 
-class gain_processor {
+    void prepareToPlay(double sampleRate, int samplesPerBlock) override;
 
+    void processBlock(AudioSampleBuffer &buffer, MidiBuffer &) override;
+
+    void reset() override;
+
+    const String getName() const override { return "Gain"; }
+
+private:
+    dsp::Gain<float> gain;
 };
-
-
 
 #endif //DAFXJUCE_GAIN_PROCESSOR_H

@@ -1,8 +1,0 @@
-//
-// Created by Jens Lindahl on 2019-05-26.
-//
-
-#ifndef DAFXJUCE_NOTHINGTORENDER_H
-#define DAFXJUCE_NOTHINGTORENDER_H
-
-#endif //DAFXJUCE_NOTHINGTORENDER_H

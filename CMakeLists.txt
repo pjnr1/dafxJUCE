@@ -19,14 +19,16 @@ set(AAX_SDK_PATH "$ENV{HOME}/SDKs/AAX" CACHE STRING "Choose the AAX SDK path." F
 set(RTAS_SDK_PATH "$ENV{HOME}/SDKs/PT_90_SDK" CACHE STRING "Choose the AAX SDK path." FORCE)
 
 
-SetAppVersion(0 1 0)
-ConfigureJUCEAppHeaders()
-
 SET(BUILD_AU 1)
 SET(BUILD_VST3 1)
 SET(BUILD_AAX 1)
-SET(BUILD_RTAS 1)
+SET(BUILD_RTAS 0)
 SET(BUILD_STANDALONE 1)
+
+
+SetAppVersion(0 1 0)
+ConfigureJUCEAppHeaders()
+
 
 if(BUILD_AU)
     ConfigureJUCEplists(AU)
@@ -73,7 +75,8 @@ AddAudioPluginModules()
 
 add_executable (STANDALONE_PLUGIN
     "${JUCE_MODULES_PATH}/juce_audio_plugin_client/juce_audio_plugin_client_Standalone.cpp"
-)
+    "JuceLibraryCode/include_juce_audio_plugin_client_Standalone.cpp"
+        )
 
 set_source_files_properties ("${JUCE_MODULES_PATH}/juce_audio_plugin_client/juce_audio_plugin_client_Standalone.cpp" PROPERTIES HEADER_FILE_ONLY TRUE)
 
@@ -160,6 +163,28 @@ add_library (SHARED_CODE STATIC
     ${${PROJECT_NAME}_SOURCE}
     ${JUCE_MODULES}
     "JuceLibraryCode/AppConfig.h"
+    "JuceLibraryCode/include_juce_analytics.cpp"
+    "JuceLibraryCode/include_juce_audio_basics.mm"
+    "JuceLibraryCode/include_juce_audio_devices.mm"
+    "JuceLibraryCode/include_juce_audio_formats.mm"
+    "JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
+    "JuceLibraryCode/include_juce_audio_plugin_client_VST_utils.mm"
+    "JuceLibraryCode/include_juce_audio_processors.mm"
+    "JuceLibraryCode/include_juce_audio_utils.mm"
+    "JuceLibraryCode/include_juce_blocks_basics.cpp"
+    "JuceLibraryCode/include_juce_box2d.cpp"
+    "JuceLibraryCode/include_juce_core.mm"
+    "JuceLibraryCode/include_juce_cryptography.mm"
+    "JuceLibraryCode/include_juce_data_structures.mm"
+    "JuceLibraryCode/include_juce_dsp.mm"
+    "JuceLibraryCode/include_juce_events.mm"
+    "JuceLibraryCode/include_juce_graphics.mm"
+    "JuceLibraryCode/include_juce_gui_basics.mm"
+    "JuceLibraryCode/include_juce_gui_extra.mm"
+    "JuceLibraryCode/include_juce_opengl.mm"
+    "JuceLibraryCode/include_juce_osc.cpp"
+    "JuceLibraryCode/include_juce_product_unlocking.mm"
+    "JuceLibraryCode/include_juce_video.mm"
     "JuceLibraryCode/JuceHeader.h"
 )
 
@@ -170,6 +195,7 @@ endforeach()
 
 # Set header only for JUCE-modules
 foreach(file ${JUCE_MODULES})
+    message(${file})
     set_source_files_properties("${file}" PROPERTIES HEADER_FILE_ONLY TRUE)
 endforeach()
 
@@ -182,31 +208,6 @@ endif (NOT RC_COMPILER)
 set_target_properties (SHARED_CODE PROPERTIES SUFFIX ".a")
 
 
-if (RC_COMPILER)
-    set (AU_REZ_SOURCES
-            "${PROJECT_SOURCE_DIR}/JuceLibraryCode/RezHeaders.r"
-            )
-    set (AU_REZ_OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.rsrc")
-    target_sources (AU PRIVATE
-            ${AU_REZ_SOURCES}
-            ${AU_REZ_OUTPUT}
-            )
-    execute_process (COMMAND
-            ${RC_COMPILER}
-            -d ppc_$ppc -d i386_$i386 -d ppc64_$ppc64 -d x86_64_$x86_64 -I /System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers -I "$(DEVELOPER_DIR)/Extras/CoreAudio/AudioUnits/AUPublic/AUBase"
-            -isysroot "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
-            -I "${JUCE_MODULES_PATH}/juce_audio_processors/format_types/VST3_SDK"
-            -I "${PROJECT_SOURCE_DIR}/JuceLibraryCode"
-            -I "/Applications/JUCE/modules"
-            -I "${JUCE_MODULES_PATH}/juce_audio_plugin_client"
-            ${AU_REZ_SOURCES}
-            -o ${AU_REZ_OUTPUT}
-            )
-    set_source_files_properties (${AU_REZ_OUTPUT} PROPERTIES
-            GENERATED TRUE
-            MACOSX_PACKAGE_LOCATION Resources
-            )
-endif (RC_COMPILER)
 
 #------------------------------------------------------------------------------
 # Config

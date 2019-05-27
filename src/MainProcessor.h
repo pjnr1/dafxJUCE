@@ -1,6 +1,8 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "ProcessorBase.h"
+#include "GainProcessor.h"
 
 class MainProcessor : public AudioProcessor
 {
@@ -48,6 +50,8 @@ public:
 
 private:
     bool bypass;
+
+    std::unique_ptr<ProcessorBase> processor;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainProcessor)

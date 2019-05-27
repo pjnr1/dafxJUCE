@@ -1,21 +1,25 @@
 #include "GainEditor.h"
 
-gain_component::gain_component()
-{
-    setSize(300, 200);
-}
-
-gain_component::~gain_component()
+GainEditor::GainEditor()
 {
 }
 
-void gain_component::paint(Graphics &g)
+GainEditor::~GainEditor()
 {
-    g.fillAll(Colours::aquamarine);
 }
 
-
-void gain_component::resized()
+void GainEditor::paint(Graphics &g)
 {
+    g.fillAll(Colours::transparentBlack);
 
+    g.setColour (Colours::grey);
+    g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
+
+    g.setColour(Colours::white);
+    g.setFont(15.0f);
+    g.drawFittedText("GainEditor", getLocalBounds(), Justification::centred, 1);
+}
+
+void GainEditor::resized()
+{
 }

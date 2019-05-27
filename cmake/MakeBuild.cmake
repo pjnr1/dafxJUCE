@@ -69,7 +69,7 @@ function(MakeBuildRTAS)
                 )
 
         set_target_properties (RTAS PROPERTIES
-                OUTPUT_NAME "NewProject"
+                OUTPUT_NAME "${PROJECT_NAME}"
                 CXX_STANDARD 14
                 CXX_EXTENSIONS OFF
                 XCODE_ATTRIBUTE_CLANG_LINK_OBJC_RUNTIME NO
@@ -85,12 +85,12 @@ function(MakeBuildRTAS)
                 XCODE_ATTRIBUTE_INFOPLIST_PREPROCESS NO
                 XCODE_ATTRIBUTE_INSTALL_PATH "/Library/Application Support/Digidesign/Plug-Ins/"
                 XCODE_ATTRIBUTE_LIBRARY_STYLE Bundle
-                XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER com.yourcompany.NewProject
-                XCODE_ATTRIBUTE_PRODUCT_NAME "NewProject"
+                XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER com.${COMPANY_ID}.${PROJECT_NAME}
+                XCODE_ATTRIBUTE_PRODUCT_NAME "${PROJECT_NAME}"
                 XCODE_ATTRIBUTE_USE_HEADERMAP NO
                 XCODE_ATTRIBUTE_WRAPPER_EXTENSION dpm
                 MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_BINARY_DIR}/plists/Debug-Info-RTAS.plist"
-                XCODE_ATTRIBUTE_PRODUCT_NAME "NewProject"
+                XCODE_ATTRIBUTE_PRODUCT_NAME "${PROJECT_NAME}"
                 BUNDLE TRUE
                 BUNDLE_EXTENSION dpm
                 XCODE_ATTRIBUTE_MACH_O_TYPE "mh_bundle"
@@ -119,9 +119,9 @@ function(MakeBuildRTAS)
                 )
 
         add_custom_command (TARGET RTAS POST_BUILD
-                COMMAND ${CMAKE_COMMAND} -E remove_directory "/Library/Application Support/Digidesign/Plug-Ins/NewProject.dpm"
-                COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_BINARY_DIR}/NewProject.dpm" "/Library/Application Support/Digidesign/Plug-Ins/NewProject.dpm"
-                COMMENT "Copying \"NewProject.dpm\" to \"/Library/Application Support/Digidesign/Plug-Ins/\""
+                COMMAND ${CMAKE_COMMAND} -E remove_directory "/Library/Application Support/Digidesign/Plug-Ins/${PROJECT_NAME}.dpm"
+                COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.dpm" "/Library/Application Support/Digidesign/Plug-Ins/${PROJECT_NAME}.dpm"
+                COMMENT "Copying \"${PROJECT_NAME}.dpm\" to \"/Library/Application Support/Digidesign/Plug-Ins/\""
                 )
 
     elseif(CMAKE_BUILD_TYPE STREQUAL Release)
@@ -150,7 +150,7 @@ function(MakeBuildRTAS)
                 )
 
         set_target_properties (RTAS PROPERTIES
-                OUTPUT_NAME "NewProject"
+                OUTPUT_NAME "${PROJECT_NAME}"
                 CXX_STANDARD 14
                 CXX_EXTENSIONS OFF
                 XCODE_ATTRIBUTE_CLANG_LINK_OBJC_RUNTIME NO
@@ -167,12 +167,12 @@ function(MakeBuildRTAS)
                 XCODE_ATTRIBUTE_INFOPLIST_PREPROCESS NO
                 XCODE_ATTRIBUTE_INSTALL_PATH "/Library/Application Support/Digidesign/Plug-Ins/"
                 XCODE_ATTRIBUTE_LIBRARY_STYLE Bundle
-                XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER com.yourcompany.NewProject
-                XCODE_ATTRIBUTE_PRODUCT_NAME "NewProject"
+                XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER com.${COMPANY_ID}.${PROJECT_NAME}
+                XCODE_ATTRIBUTE_PRODUCT_NAME "${PROJECT_NAME}"
                 XCODE_ATTRIBUTE_USE_HEADERMAP NO
                 XCODE_ATTRIBUTE_WRAPPER_EXTENSION dpm
                 MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_BINARY_DIR}/plists/Release-Info-RTAS.plist"
-                XCODE_ATTRIBUTE_PRODUCT_NAME "NewProject"
+                XCODE_ATTRIBUTE_PRODUCT_NAME "${PROJECT_NAME}"
                 BUNDLE TRUE
                 BUNDLE_EXTENSION dpm
                 XCODE_ATTRIBUTE_MACH_O_TYPE "mh_bundle"
@@ -201,9 +201,9 @@ function(MakeBuildRTAS)
                 )
 
         add_custom_command (TARGET RTAS POST_BUILD
-                COMMAND ${CMAKE_COMMAND} -E remove_directory "/Library/Application Support/Digidesign/Plug-Ins/NewProject.dpm"
-                COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_BINARY_DIR}/NewProject.dpm" "/Library/Application Support/Digidesign/Plug-Ins/NewProject.dpm"
-                COMMENT "Copying \"NewProject.dpm\" to \"/Library/Application Support/Digidesign/Plug-Ins/\""
+                COMMAND ${CMAKE_COMMAND} -E remove_directory "/Library/Application Support/Digidesign/Plug-Ins/${PROJECT_NAME}.dpm"
+                COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.dpm" "/Library/Application Support/Digidesign/Plug-Ins/${PROJECT_NAME}.dpm"
+                COMMENT "Copying \"${PROJECT_NAME}.dpm\" to \"/Library/Application Support/Digidesign/Plug-Ins/\""
                 )
 
 
@@ -249,7 +249,7 @@ function(MakeBuildAAX)
                 )
 
         set_target_properties (AAX PROPERTIES
-                OUTPUT_NAME "NewProject"
+                OUTPUT_NAME "${PROJECT_NAME}"
                 CXX_STANDARD 14
                 CXX_EXTENSIONS OFF
                 XCODE_ATTRIBUTE_CLANG_LINK_OBJC_RUNTIME NO
@@ -265,12 +265,12 @@ function(MakeBuildAAX)
                 XCODE_ATTRIBUTE_INFOPLIST_PREPROCESS NO
                 XCODE_ATTRIBUTE_INSTALL_PATH "/Library/Application Support/Avid/Audio/Plug-Ins/"
                 XCODE_ATTRIBUTE_LIBRARY_STYLE Bundle
-                XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER com.yourcompany.NewProject
-                XCODE_ATTRIBUTE_PRODUCT_NAME "NewProject"
+                XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER com.${COMPANY_ID}.${PROJECT_NAME}
+                XCODE_ATTRIBUTE_PRODUCT_NAME "${PROJECT_NAME}"
                 XCODE_ATTRIBUTE_USE_HEADERMAP NO
                 XCODE_ATTRIBUTE_WRAPPER_EXTENSION aaxplugin
                 MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_BINARY_DIR}/plists/Debug-Info-AAX.plist"
-                XCODE_ATTRIBUTE_PRODUCT_NAME "NewProject"
+                XCODE_ATTRIBUTE_PRODUCT_NAME "${PROJECT_NAME}"
                 BUNDLE TRUE
                 BUNDLE_EXTENSION aaxplugin
                 XCODE_ATTRIBUTE_MACH_O_TYPE "mh_bundle"
@@ -297,9 +297,9 @@ function(MakeBuildAAX)
                 )
 
         add_custom_command (TARGET AAX POST_BUILD
-                COMMAND ${CMAKE_COMMAND} -E remove_directory "/Library/Application Support/Avid/Audio/Plug-Ins/NewProject.aaxplugin"
-                COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_BINARY_DIR}/NewProject.aaxplugin" "/Library/Application Support/Avid/Audio/Plug-Ins/NewProject.aaxplugin"
-                COMMENT "Copying \"NewProject.aaxplugin\" to \"/Library/Application Support/Avid/Audio/Plug-Ins/\""
+                COMMAND ${CMAKE_COMMAND} -E remove_directory "/Library/Application Support/Avid/Audio/Plug-Ins/${PROJECT_NAME}.aaxplugin"
+                COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.aaxplugin" "/Library/Application Support/Avid/Audio/Plug-Ins/${PROJECT_NAME}.aaxplugin"
+                COMMENT "Copying \"${PROJECT_NAME}.aaxplugin\" to \"/Library/Application Support/Avid/Audio/Plug-Ins/\""
                 )
     elseif(CMAKE_BUILD_TYPE STREQUAL Release)
 
@@ -337,7 +337,7 @@ function(MakeBuildAAX)
                 )
 
         set_target_properties (AAX PROPERTIES
-                OUTPUT_NAME "NewProject"
+                OUTPUT_NAME "${PROJECT_NAME}"
                 CXX_STANDARD 14
                 CXX_EXTENSIONS OFF
                 XCODE_ATTRIBUTE_CLANG_LINK_OBJC_RUNTIME NO
@@ -354,12 +354,12 @@ function(MakeBuildAAX)
                 XCODE_ATTRIBUTE_INFOPLIST_PREPROCESS NO
                 XCODE_ATTRIBUTE_INSTALL_PATH "/Library/Application Support/Avid/Audio/Plug-Ins/"
                 XCODE_ATTRIBUTE_LIBRARY_STYLE Bundle
-                XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER com.yourcompany.NewProject
-                XCODE_ATTRIBUTE_PRODUCT_NAME "NewProject"
+                XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER com.${COMPANY_ID}.${PROJECT_NAME}
+                XCODE_ATTRIBUTE_PRODUCT_NAME "${PROJECT_NAME}"
                 XCODE_ATTRIBUTE_USE_HEADERMAP NO
                 XCODE_ATTRIBUTE_WRAPPER_EXTENSION aaxplugin
                 MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_BINARY_DIR}/plists/Release-Info-AAX.plist"
-                XCODE_ATTRIBUTE_PRODUCT_NAME "NewProject"
+                XCODE_ATTRIBUTE_PRODUCT_NAME "${PROJECT_NAME}"
                 BUNDLE TRUE
                 BUNDLE_EXTENSION aaxplugin
                 XCODE_ATTRIBUTE_MACH_O_TYPE "mh_bundle"
@@ -386,9 +386,9 @@ function(MakeBuildAAX)
                 )
 
         add_custom_command (TARGET AAX POST_BUILD
-                COMMAND ${CMAKE_COMMAND} -E remove_directory "/Library/Application Support/Avid/Audio/Plug-Ins/NewProject.aaxplugin"
-                COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_BINARY_DIR}/NewProject.aaxplugin" "/Library/Application Support/Avid/Audio/Plug-Ins/NewProject.aaxplugin"
-                COMMENT "Copying \"NewProject.aaxplugin\" to \"/Library/Application Support/Avid/Audio/Plug-Ins/\""
+                COMMAND ${CMAKE_COMMAND} -E remove_directory "/Library/Application Support/Avid/Audio/Plug-Ins/${PROJECT_NAME}.aaxplugin"
+                COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.aaxplugin" "/Library/Application Support/Avid/Audio/Plug-Ins/${PROJECT_NAME}.aaxplugin"
+                COMMENT "Copying \"${PROJECT_NAME}.aaxplugin\" to \"/Library/Application Support/Avid/Audio/Plug-Ins/\""
                 )
     endif()
 endfunction()
@@ -428,6 +428,32 @@ function(MakeBuildAU)
                 -O0
                 -stdlib=libc++
                 )
+
+        if (RC_COMPILER)
+            set (AU_REZ_SOURCES
+                    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/RezHeaders.r"
+                    )
+            set (AU_REZ_OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.rsrc")
+            target_sources (AU PRIVATE
+                    ${AU_REZ_SOURCES}
+                    ${AU_REZ_OUTPUT}
+                    )
+            execute_process (COMMAND
+                    ${RC_COMPILER}
+                    -d ppc_$ppc -d i386_$i386 -d ppc64_$ppc64 -d x86_64_$x86_64 -I /System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers -I "$(DEVELOPER_DIR)/Extras/CoreAudio/AudioUnits/AUPublic/AUBase"
+                    -isysroot "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
+                    -I "${JUCE_MODULES_PATH}/juce_audio_processors/format_types/VST3_SDK"
+                    -I "${PROJECT_SOURCE_DIR}/JuceLibraryCode"
+                    -I "/Applications/JUCE/modules"
+                    -I "${JUCE_MODULES_PATH}/juce_audio_plugin_client"
+                    ${AU_REZ_SOURCES}
+                    -o ${AU_REZ_OUTPUT}
+                    )
+            set_source_files_properties (${AU_REZ_OUTPUT} PROPERTIES
+                    GENERATED TRUE
+                    MACOSX_PACKAGE_LOCATION Resources
+                    )
+        endif (RC_COMPILER)
 
         set_target_properties (AU PROPERTIES
                 OUTPUT_NAME "${PROJECT_NAME}"
@@ -510,6 +536,32 @@ function(MakeBuildAU)
                 -flto
                 -stdlib=libc++
                 )
+
+        if (RC_COMPILER)
+            set (AU_REZ_SOURCES
+                    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/RezHeaders.r"
+                    )
+            set (AU_REZ_OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.rsrc")
+            target_sources (AU PRIVATE
+                    ${AU_REZ_SOURCES}
+                    ${AU_REZ_OUTPUT}
+                    )
+            execute_process (COMMAND
+                    ${RC_COMPILER}
+                    -d ppc_$ppc -d i386_$i386 -d ppc64_$ppc64 -d x86_64_$x86_64 -I /System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers -I "$(DEVELOPER_DIR)/Extras/CoreAudio/AudioUnits/AUPublic/AUBase"
+                    -isysroot "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
+                    -I "${JUCE_MODULES_PATH}/juce_audio_processors/format_types/VST3_SDK"
+                    -I "${PROJECT_SOURCE_DIR}/JuceLibraryCode"
+                    -I "/Applications/JUCE/modules"
+                    -I "${JUCE_MODULES_PATH}/juce_audio_plugin_client"
+                    ${AU_REZ_SOURCES}
+                    -o ${AU_REZ_OUTPUT}
+                    )
+            set_source_files_properties (${AU_REZ_OUTPUT} PROPERTIES
+                    GENERATED TRUE
+                    MACOSX_PACKAGE_LOCATION Resources
+                    )
+        endif (RC_COMPILER)
 
         set_target_properties (AU PROPERTIES
                 OUTPUT_NAME "${PROJECT_NAME}"
