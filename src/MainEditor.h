@@ -13,9 +13,6 @@ class MainEditor : public AudioProcessorEditor,
                    private Timer
 {
 public:
-    using AudioGraphIOProcessor = AudioProcessorGraph::AudioGraphIOProcessor;
-    using Node = AudioProcessorGraph::Node;
-
     MainEditor(MainProcessor &);
     ~MainEditor();
 
@@ -29,9 +26,10 @@ public:
 private:
     void timerCallback() override;
 
+    void updateSize();
+
     MainProcessor &processor;
 
-    std::vector<Component *> components;
     OwnedArray<Component> editors;
 
     ContentSelector contentSelector;

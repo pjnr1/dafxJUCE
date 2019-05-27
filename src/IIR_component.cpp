@@ -2,7 +2,7 @@
 
 IIR_component::IIR_component()
 {
-    setSize(300, 200);
+    setSize(400,400);
 }
 
 IIR_component::~IIR_component()

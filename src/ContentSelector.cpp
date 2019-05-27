@@ -6,13 +6,17 @@ ContentSelector::ContentSelector()
     addAndMakeVisible(contentSelectorBox);
 
     // Add list of FXs
-    contentSelectorBox.addItemList(processorChoices, 1);
+    int firstId = 1;
+    contentSelectorBox.addItemList(processorChoices, firstId);
+    contentSelectorBox.setSelectedId(firstId);
 
     addAndMakeVisible(contentSelectorLabel);
 
     addAndMakeVisible(bypassToggle);
 
     contentSelectorLabel.attachToComponent(&contentSelectorBox, true);
+
+    setSize(400, 100);
 }
 
 ContentSelector::~ContentSelector()

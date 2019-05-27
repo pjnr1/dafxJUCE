@@ -2,6 +2,7 @@
 
 GainEditor::GainEditor()
 {
+    setSize(600,200);
 }
 
 GainEditor::~GainEditor()

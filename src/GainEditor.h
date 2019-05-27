@@ -2,6 +2,7 @@
 #define DAFXJUCE_GAIN_COMPONENT_H
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "EditorBase.h"
 
 class GainEditor : public Component
 {

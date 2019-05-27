@@ -2,6 +2,7 @@
 #define DAFXJUCE_IIR_COMPONENT_H
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "EditorBase.h"
 
 class IIR_component : public Component
 {
