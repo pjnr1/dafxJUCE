@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.4.1)
+cmake_minimum_required (VERSION 3.13)
 
 set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 find_package(JUCEcmakehelpers)
@@ -10,9 +10,10 @@ set(PROJECT_NAME dafxJUCE)
 set(COMPANY_ID pjnr1)
 message("-- CMAKE --")
 message("Loading:\tcom.${COMPANY_ID}.${PROJECT_NAME}")
+message("CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}")
 
 if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "Debug"  CACHE STRING "Choose the type of build." FORCE)
+    set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Choose the type of build." FORCE)
 endif (NOT CMAKE_BUILD_TYPE)
 
 set(AAX_SDK_PATH "$ENV{HOME}/SDKs/AAX" CACHE STRING "Choose the AAX SDK path." FORCE)
@@ -198,7 +199,7 @@ endforeach()
 
 # Set header only for src-headers
 foreach(file ${${PROJECT_NAME}_HEADERS})
-    set_source_files_properties("${file}" PROPERTIES HEADER_FILE_ONLY TRUE)
+    # set_source_files_properties("${file}" PROPERTIES HEADER_FILE_ONLY TRUE)
 endforeach()
 
 # Set header only for JUCE-modules

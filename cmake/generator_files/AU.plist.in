@@ -35,11 +35,11 @@
         <key>factoryFunction</key>
         <string>@PROJECT_NAME@AUFactory</string>
         <key>manufacturer</key>
-        <string>Manu</string>
+        <string>Pjnr</string>
         <key>type</key>
         <string>aufx</string>
         <key>subtype</key>
-        <string>D8za</string>
+        <string>Dafx</string>
         <key>version</key>
         <integer>@PLUGIN_DEC_VERSION@</integer>
         <key>resourceUsage</key>
