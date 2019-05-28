@@ -2,8 +2,9 @@
 #define DAFXJUCE_CONTENTSELECTOR_H
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "Base/GUIElement.h"
 
-class ContentSelector : public Component
+class ContentSelector : public GUIElement
 {
 public:
     ContentSelector();
@@ -12,11 +13,15 @@ public:
     void paint(Graphics &) override;
     void resized() override;
 
-    ToggleButton* getReferenceToBypass();
-    ComboBox* getReferenceToSelectorBox();
+    void setChoices(StringArray &choices);
+
+    ToggleButton *getReferenceToBypass();
+    ComboBox *getReferenceToSelectorBox();
 
 private:
-    StringArray processorChoices { "Empty", "Gain", "IIR" };
+    void setupAndMakeVisible();
+
+    StringArray processorChoices { "Empty", "Gain", "Filter" };
 
     Label contentSelectorLabel { {}, { "Select FX" } };
     ComboBox contentSelectorBox;

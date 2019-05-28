@@ -7,18 +7,27 @@ MainEditor::MainEditor(MainProcessor &p)
     : AudioProcessorEditor(&p)
     , processor(p)
 {
+    /*
+     * This part is crucial for using different editors in the plugin.
+     * Each editor holds a point to it's delegated processor, this might be
+     * reverse-ownership comparred to how the MainProcessor and MainEditor
+     * is connected.
+     * But, that's just the way she goes..
+     */
+    editors.insert(0, new EmptyEditor("Select an FX from the menu.."));
+    editors.insert(1, new GainEditor());
+    editors.insert(2, new FilterEditor());
+
     // Initialize header / control view
     addAndMakeVisible(contentSelector);
+
     contentSelector.getReferenceToBypass()->addListener(this);
     contentSelector.getReferenceToSelectorBox()->addListener(this);
 
-    // Initialize content view
-    editors.insert(0, new EmptyEditor("Select a component"));
-    editors.insert(1, new GainEditor());
-    editors.insert(2, new IIR_component());
 
+
+    // Initialize content view
     content = editors.getUnchecked(0);
-    // content = components.front();
 
     addAndMakeVisible(content);
 
@@ -27,6 +36,7 @@ MainEditor::MainEditor(MainProcessor &p)
 
 MainEditor::~MainEditor()
 {
+
 }
 
 //==============================================================================
@@ -44,8 +54,8 @@ void MainEditor::resized()
     fb.justifyContent = FlexBox::JustifyContent::center;
     fb.alignContent = FlexBox::AlignContent::center;
 
-    FlexItem fbContentSelector(getWidth(), 100, contentSelector);
-    FlexItem fbContent(getWidth(), getHeight() - 100, *content);
+    FlexItem fbContentSelector(getWidth(), contentSelector.getHeight(), contentSelector);
+    FlexItem fbContent(getWidth(), getHeight() - contentSelector.getHeight(), *content);
 
     fb.items.addArray({ fbContentSelector, fbContent });
     fb.performLayout(getLocalBounds().toFloat());
@@ -65,22 +75,39 @@ void MainEditor::buttonClicked(Button *button)
     }
 }
 
-void MainEditor::updateSize() {
-    auto width = max(content->getWidth(), contentSelector.getWidth());
-    auto height = contentSelector.getHeight() + content->getHeight();
-    setSize(width,height);
+void MainEditor::updateSize()
+{
+    auto width = std::max<int>(contentSelector.getMinWidth(), content->getWidth());
+    auto height = contentSelector.getMinHeight() + content->getHeight();
+
+    setSize(width, height);
+
+    this->resized();
 }
 
 void MainEditor::comboBoxChanged(ComboBox *comboBoxThatHasChanged)
 {
     auto idx = comboBoxThatHasChanged->getSelectedItemIndex();
 
+    setEditor(idx);
+    setProcessor(idx);
+
+    //    std::cout << content->getName() << std::endl;
+    //    std::cout << contentSelector.getWidth() << " x " << contentSelector.getHeight() << std::endl;
+    //    std::cout << content->getWidth() << " x " << content->getHeight() << std::endl;
+    //    std::cout << std::endl;
+
+    updateSize();
+}
+
+void MainEditor::setEditor(int idx)
+{
     removeChildComponent(content);
     content = editors.getUnchecked(idx);
     addAndMakeVisible(content);
+}
 
-    updateSize();
-
-    // Call to correct placement
-    this->resized();
+void MainEditor::setProcessor(int idx)
+{
+    processor.setProcessor(content->getProcessor());
 }

@@ -1,7 +1,7 @@
 #ifndef DAFXJUCE_PROCESSORBASE_H
 #define DAFXJUCE_PROCESSORBASE_H
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "JuceHeader.h"
 
 class ProcessorBase : public AudioProcessor
 {
@@ -20,7 +20,6 @@ public:
     bool hasEditor() const override { return false; }
 
     //==============================================================================
-    const String getName() const override { return {}; }
     bool acceptsMidi() const override { return false; }
     bool producesMidi() const override { return false; }
     double getTailLengthSeconds() const override { return 0; }

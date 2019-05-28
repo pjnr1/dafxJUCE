@@ -6,23 +6,34 @@
 #define DAFXJUCE_EMPTYEDITOR_H
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "EditorBase.h"
+#include "Base/EditorBase.h"
+#include "EmptyProcessor.h"
 
-class EmptyEditor : public Component
+class EmptyEditor : public EditorBase
 {
 public:
     EmptyEditor()
+        : EditorBase()
     {
-        setSize(0,0);
-        infoString = "";
+        initializeEditor();
     }
-    EmptyEditor(const String& info)
+    explicit EmptyEditor(const String &info)
+        : EmptyEditor()
     {
-        setSize(300, 200);
         infoString = info;
     }
-    ~EmptyEditor()
-    {
+    ~EmptyEditor() override = default;
+
+    EditorMeta getEditorMeta() final {
+        EditorMeta meta;
+        meta.width = 200;
+        meta.height = 200;
+        meta.name = "EmptyEditor";
+        return meta;
+    }
+
+    ProcessorBase* createProcessor() final {
+        return new EmptyProcessor();
     }
 
     void paint(Graphics &g) override
@@ -41,9 +52,7 @@ public:
     }
 
 private:
-    String infoString;
-
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EmptyEditor)
+    String infoString = "";
 };
 
 #endif //DAFXJUCE_EMPTYEDITOR_H

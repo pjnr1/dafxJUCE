@@ -84,11 +84,14 @@ set_source_files_properties ("${JUCE_MODULES_PATH}/juce_audio_plugin_client/juce
 file(GLOB ${PROJECT_NAME}_SOURCE
         "src/*.h"
         "src/*.cpp"
+        "src/*/*.h"
+        "src/*/*.cpp"
         )
 
 # Get full src (headers only)
 file(GLOB ${PROJECT_NAME}_HEADERS
         "src/*.h"
+        "src/*/*.h"
         )
 
 # Get all JUCE-modules source/headers
@@ -187,6 +190,11 @@ add_library (SHARED_CODE STATIC
     "JuceLibraryCode/include_juce_video.mm"
     "JuceLibraryCode/JuceHeader.h"
 )
+
+# Print source files
+foreach(file ${${PROJECT_NAME}_SOURCE})
+    message("Source-files: ${file}")
+endforeach()
 
 # Set header only for src-headers
 foreach(file ${${PROJECT_NAME}_HEADERS})

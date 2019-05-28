@@ -1,10 +1,10 @@
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
 #include "ContentSelector.h"
 #include "EmptyEditor.h"
-#include "GainEditor.h"
-#include "IIR_component.h"
+#include "Filter/FilterEditor.h"
+#include "Gain/GainEditor.h"
+#include "JuceHeader.h"
 #include "MainProcessor.h"
 
 class MainEditor : public AudioProcessorEditor,
@@ -13,8 +13,8 @@ class MainEditor : public AudioProcessorEditor,
                    private Timer
 {
 public:
-    MainEditor(MainProcessor &);
-    ~MainEditor();
+    explicit MainEditor(MainProcessor &);
+    ~MainEditor() override;
 
     //==============================================================================
     void paint(Graphics &) override;
@@ -27,13 +27,15 @@ private:
     void timerCallback() override;
 
     void updateSize();
+    void setEditor(int idx);
+    void setProcessor(int idx);
 
     MainProcessor &processor;
 
-    OwnedArray<Component> editors;
+    OwnedArray<EditorBase> editors;
 
     ContentSelector contentSelector;
-    Component* content;
+    EditorBase *content;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainEditor)
 };

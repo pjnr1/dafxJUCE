@@ -2,34 +2,33 @@
 
 ContentSelector::ContentSelector()
 {
-    // Add content selector
-    addAndMakeVisible(contentSelectorBox);
+    setupAndMakeVisible();
+}
 
+void ContentSelector::setupAndMakeVisible()
+{
     // Add list of FXs
     int firstId = 1;
     contentSelectorBox.addItemList(processorChoices, firstId);
     contentSelectorBox.setSelectedId(firstId);
 
+    // Add content selector
+    addAndMakeVisible(contentSelectorBox);
     addAndMakeVisible(contentSelectorLabel);
-
     addAndMakeVisible(bypassToggle);
-
     contentSelectorLabel.attachToComponent(&contentSelectorBox, true);
-
-    setSize(400, 100);
+    setSize(260, 65);
 }
 
 ContentSelector::~ContentSelector()
 {
 }
 
-
 void ContentSelector::paint(Graphics &g)
 {
     g.fillAll(Colours::transparentBlack);
     // nothingToRender(g,"ContentSelector", getLocalBounds());
 }
-
 
 void ContentSelector::resized()
 {
@@ -41,19 +40,27 @@ void ContentSelector::resized()
     fb.justifyContent = FlexBox::JustifyContent::center;
     fb.alignContent = FlexBox::AlignContent::center;
 
-    FlexItem selector(width,height / 3.0f, contentSelectorBox);
+    FlexItem selector(width, height / 3.0f, contentSelectorBox);
 
-    FlexItem bypass(width,height / 3.0f, bypassToggle);
+    FlexItem bypass(width, height / 3.0f, bypassToggle);
 
     fb.items.addArray({ selector, bypass });
     fb.performLayout(getLocalBounds().toFloat());
-
 }
 
-ToggleButton* ContentSelector::getReferenceToBypass() {
+void ContentSelector::setChoices(StringArray &choices)
+{
+    processorChoices = choices;
+    contentSelectorBox.clear(NotificationType::dontSendNotification);
+    setupAndMakeVisible();
+}
+
+ToggleButton *ContentSelector::getReferenceToBypass()
+{
     return &bypassToggle;
 }
 
-ComboBox* ContentSelector::getReferenceToSelectorBox() {
+ComboBox *ContentSelector::getReferenceToSelectorBox()
+{
     return &contentSelectorBox;
 }

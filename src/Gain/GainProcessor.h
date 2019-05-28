@@ -1,8 +1,8 @@
 #ifndef DAFXJUCE_GAIN_PROCESSOR_H
 #define DAFXJUCE_GAIN_PROCESSOR_H
 
-#include "../JuceLibraryCode/JuceHeader.h"
-#include "ProcessorBase.h"
+#include "../Base/ProcessorBase.h"
+#include "JuceHeader.h"
 
 class GainProcessor : public ProcessorBase
 {

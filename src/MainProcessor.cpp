@@ -1,3 +1,5 @@
+#include <memory>
+
 /*
   ==============================================================================
 
@@ -19,7 +21,7 @@ MainProcessor::MainProcessor()
                          .withOutput("Output", AudioChannelSet::stereo(), true))
 #endif
 {
-    processor.reset(new GainProcessor());
+    processor = nullptr;
 }
 
 MainProcessor::~MainProcessor()
@@ -152,6 +154,10 @@ void MainProcessor::enableBypass()
 void MainProcessor::disableBypass()
 {
     bypass = false;
+}
+
+void MainProcessor::setProcessor(ProcessorBase* p) {
+    processor = p;
 }
 
 //==============================================================================
