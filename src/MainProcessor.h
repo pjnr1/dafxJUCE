@@ -1,11 +1,26 @@
 #pragma once
 
-#include "Base/ProcessorBase.h"
-#include "Gain/GainProcessor.h"
 #include "JuceHeader.h"
 
 class MainProcessor : public AudioProcessor
 {
+public:
+    struct AParamFloat {
+        String id;
+        String name;
+        NormalisableRange<float> range;
+        float defaultValue;
+        String label;
+    };
+    struct AParamInt {
+        String id;
+        String name;
+        int start;
+        int end;
+        int defaultValue;
+        String label;
+    };
+
 public:
     //==============================================================================
     MainProcessor();
@@ -44,18 +59,24 @@ public:
     void getStateInformation(MemoryBlock &destData) override;
     void setStateInformation(const void *data, int sizeInBytes) override;
 
-    //==============================================================================
-    void enableBypass();
-    void disableBypass();
 
 
-    void setProcessor(ProcessorBase* p);
+
+    AudioProcessorValueTreeState apvts;
+
+    static AParamFloat paramAttack;
+    static AParamFloat paramRelease;
+    static AParamInt   paramRatio;
+    static AParamFloat paramKnee;
+    static AParamFloat paramGainIn;
+    static AParamFloat paramGainOut;
 
 private:
-    bool bypass{};
-    ProcessorBase* processor;
+
 
 
     //==============================================================================
+    UndoManager undoManager;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainProcessor)
 };
