@@ -361,10 +361,10 @@
 #define JucePlugin_Enable_IAA             0
 #endif
 #ifndef  JucePlugin_Name
-#define JucePlugin_Name                   "dafxJUCE"
+#define JucePlugin_Name                   "compressor"
 #endif
 #ifndef  JucePlugin_Desc
-#define JucePlugin_Desc                   "dafxJUCE"
+#define JucePlugin_Desc                   "compressor"
 #endif
 #ifndef  JucePlugin_Manufacturer
 #define JucePlugin_Manufacturer           "pjnr1"
@@ -421,16 +421,16 @@
 #define JucePlugin_AUSubType              JucePlugin_PluginCode
 #endif
 #ifndef  JucePlugin_AUExportPrefix
-#define JucePlugin_AUExportPrefix         dafxJUCEAU
+#define JucePlugin_AUExportPrefix         compressorAU
 #endif
 #ifndef  JucePlugin_AUExportPrefixQuoted
-#define JucePlugin_AUExportPrefixQuoted   "dafxJUCEAU"
+#define JucePlugin_AUExportPrefixQuoted   "compressorAU"
 #endif
 #ifndef  JucePlugin_AUManufacturerCode
 #define JucePlugin_AUManufacturerCode     JucePlugin_ManufacturerCode
 #endif
 #ifndef  JucePlugin_CFBundleIdentifier
-#define JucePlugin_CFBundleIdentifier     com.pjnr1.dafxJUCE
+#define JucePlugin_CFBundleIdentifier     com.pjnr1.compressor
 #endif
 #ifndef  JucePlugin_RTASCategory
 #define JucePlugin_RTASCategory           0
@@ -448,7 +448,7 @@
 #define JucePlugin_RTASDisableMultiMono   0
 #endif
 #ifndef  JucePlugin_AAXIdentifier
-#define JucePlugin_AAXIdentifier          com.pjnr1.dafxJUCE
+#define JucePlugin_AAXIdentifier          com.pjnr1.compressor
 #endif
 #ifndef  JucePlugin_AAXManufacturerCode
 #define JucePlugin_AAXManufacturerCode    JucePlugin_ManufacturerCode
@@ -472,7 +472,7 @@
 #define JucePlugin_IAASubType             JucePlugin_PluginCode
 #endif
 #ifndef  JucePlugin_IAAName
-#define JucePlugin_IAAName                "pjnr1: dafxJUCE"
+#define JucePlugin_IAAName                "pjnr1: compressor"
 #endif
 #ifndef  JucePlugin_VSTNumMidiInputs
 #define JucePlugin_VSTNumMidiInputs       16
