@@ -431,7 +431,7 @@ function(MakeBuildAU)
 
         if (RC_COMPILER)
             set (AU_REZ_SOURCES
-                    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/RezHeaders.r"
+                    "${JUCE_LIBRARY_CODE}/RezHeaders.r"
                     )
             set (AU_REZ_OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.rsrc")
             target_sources (AU PRIVATE
@@ -539,7 +539,7 @@ function(MakeBuildAU)
 
         if (RC_COMPILER)
             set (AU_REZ_SOURCES
-                    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/RezHeaders.r"
+                    "${JUCE_LIBRARY_CODE}/RezHeaders.r"
                     )
             set (AU_REZ_OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.rsrc")
             target_sources (AU PRIVATE

@@ -80,9 +80,9 @@ function(AddAudioPluginModules)
                 "${JUCE_MODULES_PATH}/juce_audio_plugin_client/juce_audio_plugin_client_AU_1.mm"
                 "${JUCE_MODULES_PATH}/juce_audio_plugin_client/juce_audio_plugin_client_AU_2.mm"
                 "${JUCE_MODULES_PATH}/juce_audio_processors/format_types/juce_AU_Shared.h"
-                "JuceLibraryCode/include_juce_audio_plugin_client_AU.r"
-                "JuceLibraryCode/include_juce_audio_plugin_client_AU_1.mm"
-                "JuceLibraryCode/include_juce_audio_plugin_client_AU_2.mm"
+                "${JUCE_LIBRARY_CODE}/include_juce_audio_plugin_client_AU.r"
+                "${JUCE_LIBRARY_CODE}/include_juce_audio_plugin_client_AU_1.mm"
+                "${JUCE_LIBRARY_CODE}/include_juce_audio_plugin_client_AU_2.mm"
                 "${PROJECT_SOURCE_DIR}/PkgInfo"
                 )
 
